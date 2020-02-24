@@ -1,11 +1,11 @@
-FROM circleci/php:7.2-cli-buster-node
+FROM circleci/php:7.3-cli-buster-node
 MAINTAINER Damien Debin <damien.debin@gmail.com>
 USER root
 ADD https://raw.githubusercontent.com/mlocati/docker-php-extension-installer/master/install-php-extensions /usr/local/bin/
 # Install PHP's ext cntl sockets xsl pcov ; install DEB's shellcheck ; disable xdebug & pcov
 RUN chmod a+rx /usr/local/bin/install-php-extensions && sync &&\
     install-php-extensions pcntl sockets xsl pcov &&\
-	install-php-extensions --cleanup pcntl sockets xsl pcov &&\
+	install-php-extensions pcntl sockets xsl pcov &&\
 	apt-get update &&\
 	apt-get -y --no-install-recommends install shellcheck &&\
 	apt-get -y autoremove && apt-get clean &&\
