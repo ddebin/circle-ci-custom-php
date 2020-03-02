@@ -1,16 +1,11 @@
-FROM circleci/php:7.3-cli-buster-node
+FROM cimg/php:7.3
 MAINTAINER Damien Debin <damien.debin@gmail.com>
 USER root
-ADD https://raw.githubusercontent.com/mlocati/docker-php-extension-installer/master/install-php-extensions /usr/local/bin/
-# Install PHP's ext cntl sockets xsl pcov ; install DEB's shellcheck ; disable xdebug & pcov
-RUN chmod a+rx /usr/local/bin/install-php-extensions && sync &&\
-    install-php-extensions pcntl sockets xsl pcov &&\
-	install-php-extensions pcntl sockets xsl pcov &&\
-	apt-get update &&\
-	apt-get -y --no-install-recommends install shellcheck &&\
+# Install PHP's ext xsl pcov ; install DEB's shellcheck nodejs (10) ; disable xdebug & pcov
+RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash - &&\
+	apt-get -y --no-install-recommends install nodejs shellcheck php$PHP_MINOR-pcov php$PHP_MINOR-xsl php$PHP_MINOR-intl php$PHP_MINOR-mbstring php$PHP_MINOR-zip php$PHP_MINOR-sqlite &&\
 	apt-get -y autoremove && apt-get clean &&\
-	npm install --no-color --production --global n && n 10 &&\
-	rm -rf /root/.npm /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* /var/log/* /root/.composer &&\
-	sed -i 's/^zend_extension/;zend_extension/g' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini &&\
-    sed -i 's/^extension/;extension/g' /usr/local/etc/php/conf.d/docker-php-ext-pcov.ini
+	phpdismod pcov &&\
+	rm -rf /root/.npm /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/* &&\
+	chown -R circleci: /home/circleci
 USER circleci
