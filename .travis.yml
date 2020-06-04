@@ -1,10 +1,15 @@
-  
-sudo: required
+os: linux
 
+dist: xenial
+  
 language: ruby
 
 services:
   - docker
 
 script:
-  - docker build .
+  - echo "$DOCKER_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build  -t "$TRAVIS_BRANCH" .
+  - docker images
+  - docker tag "$TRAVIS_BRANCH" "$TRAVIS_REPO_SLUG:$TRAVIS_BRANCH"
+  - docker push "$TRAVIS_REPO_SLUG:$TRAVIS_BRANCH"
