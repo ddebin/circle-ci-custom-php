@@ -1,4 +1,4 @@
-FROM cimg/php:7.3-node
+FROM cimg/php:7.4-node
 MAINTAINER Damien Debin <damien.debin@gmail.com>
 # Switch to root
 USER root
