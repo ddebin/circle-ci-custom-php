@@ -8,6 +8,7 @@ RUN apt-get -y update &&\
 	apt-get -y autoremove && apt-get clean &&\
 	phpdismod pcov &&\
 	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/* &&\
+	curl -sSL https://phar.io/releases/phive.phar -o /usr/local/bin/phive && chmod +x /usr/local/bin/phive &&\
 	chown -R circleci: /home/circleci
 # cf. https://github.com/symfony/panther#docker-integration
 ENV PANTHER_CHROME_DRIVER_BINARY /usr/lib/chromium-browser/chromedriver
