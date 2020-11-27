@@ -4,7 +4,7 @@ MAINTAINER Damien Debin <damien.debin@gmail.com>
 USER root
 # Install PHP's ext xsl pcov ; install DEB's shellcheck, chromium-chromedriver ; disable xdebug & pcov
 RUN apt-get -y update &&\
-	apt-get -y --no-install-recommends --no-upgrade install shellcheck "php$PHP_MINOR-pcov" "php$PHP_MINOR-xsl" "php$PHP_MINOR-intl" "php$PHP_MINOR-mbstring" "php$PHP_MINOR-zip" "php$PHP_MINOR-sqlite" &&\
+	apt-get -y --no-install-recommends --no-upgrade install shellcheck curl make "php$PHP_MINOR-curl" "php$PHP_MINOR-intl" "php$PHP_MINOR-mbstring" "php$PHP_MINOR-pcov" "php$PHP_MINOR-sqlite" "php$PHP_MINOR-zip" &&\
 	# check versions here https://www.ubuntuupdates.org/package/google_chrome/stable/main/base/google-chrome-stable
     curl --silent --show-error --location --fail --retry 3 --output google-chrome.deb "https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_85.0.4183.121-1_amd64.deb" &&\
     dpkg -i google-chrome.deb || sudo apt-get -fy --no-install-recommends --no-upgrade install &&\
