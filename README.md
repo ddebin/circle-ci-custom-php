@@ -1,7 +1,5 @@
-[![Build Status](https://travis-ci.org/ddebin/circle-ci-custom-php.svg?branch=master)](https://travis-ci.org/ddebin/circle-ci-custom-php)
+![Build Status](https://github.com/ddebin/circle-ci-custom-php/actions/workflows/docker-image.yml/badge.svg?branch=php7.4-browser)
 
-## CircleCI custom Docker image for PHP 7.1+
-
- - Main branch is Debian Buster + PHP 7.1
+## CircleCI custom Docker image for PHP 7.4
 
 DISCLAIMER: This is for _private use_, breaking changes may appear at any time.
