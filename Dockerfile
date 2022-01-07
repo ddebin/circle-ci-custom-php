@@ -1,4 +1,4 @@
-FROM cimg/php:7.4-browsers
+FROM cimg/php:8.0-browsers
 MAINTAINER Damien Debin <damien.debin@gmail.com>
 # Switch to root
 USER root
