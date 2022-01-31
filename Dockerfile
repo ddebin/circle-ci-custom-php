@@ -14,6 +14,7 @@ RUN curl -sSL --fail --retry 3 "http://dl.google.com/linux/chrome/deb/pool/main/
     unzip chromedriver.zip chromedriver -d /usr/local/bin/ && chmod +x /usr/local/bin/chromedriver &&\
     echo "$(chromedriver --version) has been installed to $(command -v chromedriver)" &&\
     curl -sSL --fail --retry 3 "https://phar.io/releases/phive.phar" -o /usr/local/bin/phive && chmod +x /usr/local/bin/phive &&\
+    curl -sSL --fail --retry 3 "https://uploader.codecov.io/latest/linux/codecov" -o /usr/local/bin/codecov && chmod +x /usr/local/bin/codecov &&\
     pecl install pcov &&\
     apt-get -y autoremove --purge && apt-get clean &&\
     rm -rf chromedriver.zip google-chrome.deb /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/* &&\
