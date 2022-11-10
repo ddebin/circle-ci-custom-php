@@ -15,6 +15,7 @@ RUN curl -sSL --fail --retry 3 "http://dl.google.com/linux/chrome/deb/pool/main/
     echo "$(chromedriver --version) has been installed to $(command -v chromedriver)" &&\
     curl -sSL --fail --retry 3 "https://phar.io/releases/phive.phar" -o /usr/local/bin/phive && chmod +x /usr/local/bin/phive &&\
     pecl install pcov xdebug gearman imagick &&\
+    sed -i -E 's/.+="(xdebug|pcov)\.so"//g' /etc/php.d/circleci.ini &&\
     apt-get purge libgearman-dev libmagickwand-dev && apt-get -y autoremove --purge && apt-get clean &&\
     rm -rf chromedriver.zip google-chrome.deb /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/* &&\
     chown -R circleci: /home/circleci
