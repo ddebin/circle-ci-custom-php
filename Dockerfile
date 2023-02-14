@@ -5,7 +5,7 @@ USER root
 # Install PHP's ext pcov gearman imagick ; install DEB's shellcheck, chromium-chromedriver
 # Check versions here https://www.ubuntuupdates.org/package/google_chrome/stable/main/base/google-chrome-stable
 RUN apt-get -y update &&\
-    apt-get -y --no-install-recommends --no-upgrade install shellcheck make libgearman8 libgearman-dev libmagickcore-6.q16-6-extra libmagickwand-dev p7zip-full rhash &&\
+    apt-get -y --no-install-recommends --no-upgrade install libxml2-utils shellcheck make libgearman8 libgearman-dev libmagickcore-6.q16-6-extra libmagickwand-dev p7zip-full rhash &&\
     sed -i 's|HERE/chrome"|HERE/chrome" --disable-setuid-sandbox --no-sandbox|g' "/opt/google/chrome/google-chrome" &&\
     echo "$(google-chrome --version) has been installed to $(command -v google-chrome)" &&\
     CHROME_MAJOR_VERSION=$(google-chrome --version | sed -E "s/.* ([0-9]+)(\.[0-9]+){3}.*/\1/") &&\
