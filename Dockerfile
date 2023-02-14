@@ -2,7 +2,9 @@ FROM cimg/php:8.1-browsers
 MAINTAINER Damien Debin <damien.debin@gmail.com>
 # Switch to root
 USER root
-RUN echo "$(google-chrome --version) has been installed to $(command -v google-chrome)" &&\
+RUN apt-get -y update &&\
+    apt-get -y --no-install-recommends --no-upgrade install libxml2-utils &&\
+    echo "$(google-chrome --version) has been installed to $(command -v google-chrome)" &&\
     CHROME_MAJOR_VERSION=$(google-chrome --version | sed -E "s/.* ([0-9]+)(\.[0-9]+){3}.*/\1/") &&\
     LATEST=`curl -sSLf --retry 3 "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_MAJOR_VERSION}"` &&\
     curl -sSLf --retry 3 "https://chromedriver.storage.googleapis.com/${LATEST}/chromedriver_linux64.zip" -o chromedriver.zip &&\
