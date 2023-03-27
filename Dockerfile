@@ -15,7 +15,7 @@ RUN apt-get -y update &&\
     echo "$(chromedriver --version) has been installed to $(command -v chromedriver)" &&\
     curl -sSL --fail --retry 3 "https://phar.io/releases/phive.phar" -o /usr/local/bin/phive && chmod +x /usr/local/bin/phive &&\
     composer selfupdate &&\
-    pecl install pcov xdebug-3.1.5 gearman imagick &&\
+    pecl install pcov xdebug-3.1.5 gearman imagick ev &&\
     sed -i -E 's/.+="(xdebug|pcov)\.so"//g' /etc/php.d/circleci.ini &&\
     apt-get purge libgearman-dev libmagickwand-dev && apt-get -y autoremove --purge && apt-get clean &&\
     rm -rf chromedriver.zip /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/* &&\
