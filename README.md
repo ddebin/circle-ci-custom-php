@@ -1,4 +1,4 @@
-![Build Status](https://github.com/ddebin/circle-ci-custom-php/actions/workflows/docker-image.yml/badge.svg?branch=php7.4-browser)
+![Build Status](https://github.com/ddebin/circle-ci-custom-php/actions/workflows/docker-image.yml/badge.svg?branch=php7.4)
 
 ## CircleCI custom Docker image for PHP 7.4
 
