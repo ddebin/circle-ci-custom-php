@@ -14,7 +14,7 @@ RUN apt-get -y update &&\
     curl -sSLf --retry 3 "https://uploader.codecov.io/latest/linux/codecov" -o /usr/local/bin/codecov && chmod +x /usr/local/bin/codecov &&\
     curl -sSLf --retry 3 "https://just.systems/install.sh" | bash -s -- --to /usr/local/bin/ &&\
     composer selfupdate &&\
-    pecl install pcov &&\
+    IPE_DONT_ENABLE=1 install-php-extensions pcov &&\
     rm -rf chromedriver.zip /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/* &&\
     chown -R circleci: /home/circleci
 # Switch back to CircleCI user
