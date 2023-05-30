@@ -7,6 +7,7 @@ USER root
 RUN apt-get -y update &&\
     apt-get -y --no-install-recommends --no-upgrade install libxml2-utils shellcheck make libgearman8 libgearman-dev libmagickcore-6.q16-6-extra libmagickwand-dev p7zip-full rhash &&\
     curl -sSL --fail --retry 3 "https://phar.io/releases/phive.phar" -o /usr/local/bin/phive && chmod +x /usr/local/bin/phive &&\
+    curl -sSL --fail --retry 3 "https://uploader.codecov.io/latest/linux/codecov" -o /usr/local/bin/codecov && chmod +x /usr/local/bin/codecov &&\
     composer selfupdate &&\
     pecl install pcov xdebug-3.1.5 gearman imagick ev &&\
     sed -i -E 's/.+="(xdebug|pcov)\.so"//g' /etc/php.d/circleci.ini &&\
