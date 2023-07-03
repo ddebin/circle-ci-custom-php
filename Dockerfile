@@ -12,9 +12,8 @@ RUN apt-get -y update &&\
     pecl install pcov xdebug-3.1.5 gearman imagick ev &&\
     sed -i -E 's/.+="(xdebug|pcov)\.so"//g' /etc/php.d/circleci.ini &&\
     apt-get purge libgearman-dev libmagickwand-dev && apt-get -y autoremove --purge && apt-get clean &&\
-    curl -sSL -o node.tar.xz "https://nodejs.org/dist/latest-v10.x/node-v10.24.1-linux-x64.tar.xz" &&\
-    tar -xJf node.tar.xz -C /usr/local --strip-components=1 &&\
-    rm -rf node.tar.xz /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/* &&\
+    curl -sSL "https://nodejs.org/dist/v14.21.3/node-v14.21.3-linux-x64.tar.xz" | tar -xJ -C /usr/local --strip-components=1 &&\
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/* &&\
     cd /usr/local/bin && ln -s node nodejs &&\
     cd /usr/bin && ln -s 7za 7zz &&\
     chown -R circleci: /home/circleci
