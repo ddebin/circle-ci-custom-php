@@ -9,8 +9,8 @@ RUN apt-get -y update &&\
     curl -sSL --fail --retry 3 "https://phar.io/releases/phive.phar" -o /usr/local/bin/phive && chmod +x /usr/local/bin/phive &&\
     curl -sSL --fail --retry 3 "https://uploader.codecov.io/latest/linux/codecov" -o /usr/local/bin/codecov && chmod +x /usr/local/bin/codecov &&\
     composer selfupdate &&\
-    pecl install pcov xdebug-3.1.5 gearman imagick ev &&\
-    sed -i -E 's/.+="(xdebug|pcov)\.so"//g' /etc/php.d/circleci.ini &&\
+    install-php-extensions pcov xdebug-^3.1 gearman imagick ev &&\
+    echo -en 'extension="gearman.so"\nextension="imagick.so"\nextension="ev.so"\nzend_extension="opcache.so"\nmemory_limit=-1\n' > /etc/php.d/circleci.ini &&\
     apt-get purge libgearman-dev libmagickwand-dev && apt-get -y autoremove --purge && apt-get clean &&\
     curl -sSL "https://nodejs.org/dist/v14.21.3/node-v14.21.3-linux-x64.tar.xz" | tar -xJ -C /usr/local --strip-components=1 &&\
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/* &&\
