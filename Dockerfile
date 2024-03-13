@@ -12,7 +12,7 @@ RUN apt-get -y update &&\
     install-php-extensions pcov xdebug-^3.1 gearman imagick ev &&\
     echo -en 'extension="gearman.so"\nextension="imagick.so"\nextension="ev.so"\nzend_extension="opcache.so"\nmemory_limit=-1\n' > /etc/php.d/circleci.ini &&\
     apt-get purge libgearman-dev libmagickwand-dev && apt-get -y autoremove --purge && apt-get clean &&\
-    curl -sSL "https://nodejs.org/dist/v14.21.3/node-v14.21.3-linux-x64.tar.xz" | tar -xJ -C /usr/local --strip-components=1 &&\
+    curl -sSL "https://nodejs.org/dist/v16.20.2/node-v16.20.2-linux-x64.tar.xz" | tar -xJ -C /usr/local --strip-components=1 &&\
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/* &&\
     cd /usr/local/bin && ln -s node nodejs &&\
     cd /usr/bin && ln -s 7za 7zz &&\
