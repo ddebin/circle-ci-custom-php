@@ -1,5 +1,5 @@
 FROM cimg/php:8.1.18-browsers
-MAINTAINER Damien Debin <damien.debin@gmail.com>
+LABEL org.opencontainers.image.authors="Damien Debin <damien.debin@gmail.com>"
 # Switch to root
 USER root
 RUN apt-get -y update &&\
